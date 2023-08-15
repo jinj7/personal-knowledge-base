@@ -73,6 +73,12 @@ sar -n DEV 1
     dpkg-deb -c xxx.deb
     ```
 
+- extract files from the deb package
+
+    ```sh
+    dpkg-deb -xv xxx.deb ./tmp
+    ```
+
 - query the deb package to which the file belongs
 
     ```sh
@@ -90,3 +96,42 @@ sar -n DEV 1
     ```sh
     apt-cache policy xxx
     ```
+
+&nbsp;
+
+
+# 6. split
+
+split a file into pieces
+
+```sh
+split -b 10M data.file -d -a 2 split_file
+```
+
+recover from splitted files
+
+```sh
+cat split_file* > data.file
+```
+
+&nbsp;
+
+
+# 7. SCP through a proxy server
+
+```sh
+scp -o "ProxyJump <User>@<Proxy-Server>" <File-Name> <User>@<Destination-Server>:<Destination-Path>
+
+scp -o "ProxyCommand ssh <user>@<Proxy-Server> nc %h %p" <File-Name> <User@<Destination-Server>:<Destination-Path>
+```
+
+&nbsp;
+
+
+# 8. Echo server with ncat 
+
+```sh
+ncat -e /bin/cat -k -u -l 20000
+```
+
+&nbsp;
